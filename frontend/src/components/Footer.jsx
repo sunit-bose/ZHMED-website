@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Mail, Phone, MapPin, Linkedin, Twitter, Facebook, ArrowRight, Loader2,
+  Mail, Phone, Linkedin, Twitter, Facebook, ArrowRight, Loader2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { api, BRAND } from "@/lib/api";
@@ -88,10 +88,6 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="h-4 w-4 mt-0.5 text-[#A8C5D6] flex-shrink-0" />
                 <span>{BRAND.phone}</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 mt-0.5 text-[#A8C5D6] flex-shrink-0" />
-                <span>{BRAND.address}</span>
               </li>
             </ul>
           </div>

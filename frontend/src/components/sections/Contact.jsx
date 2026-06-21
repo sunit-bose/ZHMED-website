@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, Send, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -51,7 +51,6 @@ export default function Contact() {
             <div className="mt-10 space-y-5">
               <ContactRow icon={Mail} label="Email" value={BRAND.email} href={`mailto:${BRAND.email}`} />
               <ContactRow icon={Phone} label="Phone" value={BRAND.phone} href={`tel:${BRAND.phone.replace(/\s/g, "")}`} />
-              <ContactRow icon={MapPin} label="Address" value={BRAND.address} />
             </div>
           </div>
 
