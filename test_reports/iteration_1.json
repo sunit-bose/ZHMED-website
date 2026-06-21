@@ -1,0 +1,25 @@
+{
+  "summary": "Full end-to-end testing for ZH Medsolutions marketing site. All 21 backend pytest cases passed; full frontend booking + resources + contact + admin flow passed via Playwright with zero console errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/test_zhmed_backend.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Backend: list_bookings/list_contact return Mongo docs directly (already excluding _id via projection) — OK. Consider validating against a Pydantic response_model for consistency.",
+    "Backend: /api/admin/verify accepts untyped dict payload — consider Pydantic AdminVerify model for clearer 422 errors and request schema.",
+    "Backend: PAST_DATE check uses UTC current date while business advertises EST. Edge case: a booking 'today' in EST late evening may be valid in EST but rejected because UTC has rolled over — low priority, acceptable for current scope.",
+    "Booking.jsx: detail page Reference uses bookingResult.id.slice(0,8) — fine, but no client-side validation of email/phone format before submit; relies on backend Pydantic EmailStr only (which is enough).",
+    "api.js: leftover no-op axios request interceptor — harmless but can be removed.",
+    "Admin token stored in localStorage as plain text — acceptable since it's a shared admin token in a marketing site, but should be documented."
+  ],
+  "updated_files": ["/app/backend/tests/test_zhmed_backend.py"],
+  "success_rate": {"backend": "100% (21/21)", "frontend": "100% (booking + resources + contact + admin all green)"},
+  "test_credentials": "Admin token: zhmed-admin-2025 (header X-Admin-Token).",
+  "seed_data_creation": "Created via tests: 1 booking (era-enrollment, future date +45d at 10:00) and 1 contact message via pytest; 1 booking (future date +60d at 14:00) and 1 contact (uicontact@example.com) via UI Playwright run. All have TEST_ / 'TEST UI' prefixes in name fields.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Backend uses static SERVICES (12) and BLOG_POSTS (4). Bookings collision check is on (date, time_slot). System date during this run was 2026-06-21. If re-running pytest, dates +30/+45 from today are used — should still work for many months. Admin token via X-Admin-Token header, also verified by POST /api/admin/verify. Frontend all flows green; data-testids fully wired; no console errors."
+}

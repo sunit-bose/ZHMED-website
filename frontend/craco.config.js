@@ -61,19 +61,42 @@ let webpackConfig = {
 };
 
 webpackConfig.devServer = (devServerConfig) => {
+  // Migrate webpack-dev-server v4 → v5 options used by react-scripts 5
+  const before = devServerConfig.onBeforeSetupMiddleware;
+  const after = devServerConfig.onAfterSetupMiddleware;
+  if (before || after) {
+    delete devServerConfig.onBeforeSetupMiddleware;
+    delete devServerConfig.onAfterSetupMiddleware;
+    const prevSetup = devServerConfig.setupMiddlewares;
+    devServerConfig.setupMiddlewares = (middlewares, devServer) => {
+      if (before) before(devServer);
+      const next = prevSetup ? prevSetup(middlewares, devServer) : middlewares;
+      if (after) after(devServer);
+      return next;
+    };
+  }
+
+  // `https` option was removed in v5 → use `server`
+  if ("https" in devServerConfig) {
+    const httpsOpt = devServerConfig.https;
+    delete devServerConfig.https;
+    devServerConfig.server = httpsOpt
+      ? { type: "https", options: typeof httpsOpt === "object" ? httpsOpt : {} }
+      : "http";
+  }
+
+  // Allow preview / external hosts (Cloudflare tunnels, ngrok, etc.)
+  devServerConfig.allowedHosts = "all";
+
   // Add health check endpoints if enabled
   if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
     const originalSetupMiddlewares = devServerConfig.setupMiddlewares;
 
     devServerConfig.setupMiddlewares = (middlewares, devServer) => {
-      // Call original setup if exists
       if (originalSetupMiddlewares) {
         middlewares = originalSetupMiddlewares(middlewares, devServer);
       }
-
-      // Setup health endpoints
       setupHealthEndpoints(devServer, healthPluginInstance);
-
       return middlewares;
     };
   }

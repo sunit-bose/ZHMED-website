@@ -1,34 +1,60 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Component-level styles for ZH Medsolutions */
+
+.hero-gradient {
+  background:
+    radial-gradient(80% 60% at 20% 0%, rgba(168, 197, 214, 0.35), transparent 60%),
+    radial-gradient(60% 50% at 90% 30%, rgba(46, 90, 110, 0.08), transparent 70%),
+    linear-gradient(180deg, #F4F8FB 0%, #FAFCFD 100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.hero-grid {
+  background-image: linear-gradient(rgba(46,90,110,0.06) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(46,90,110,0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black, transparent 80%);
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.heart-pulse-bg {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 200'><path d='M10 100 L120 100 L140 60 L165 140 L190 80 L220 120 L250 100 L590 100' stroke='%23A8C5D6' stroke-width='2' fill='none' opacity='0.45'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 70% auto;
 }
 
-.App-link {
-    color: #61dafb;
+.service-card {
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -18px rgba(46, 90, 110, 0.35);
+  border-color: rgba(46,90,110,0.25);
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.nav-link {
+  position: relative;
+  transition: color .2s ease;
 }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 2px;
+  background: #2E5A6E;
+  transition: width .25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+
+/* Booking step indicator */
+.step-dot {
+  width: 28px; height: 28px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+  background: #E8F0F4;
+  color: #2E5A6E;
+}
+.step-dot.active { background: #2E5A6E; color: white; }
+.step-dot.done { background: #1E3D4A; color: white; }
