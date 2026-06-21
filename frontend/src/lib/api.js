@@ -32,9 +32,9 @@ export const BRAND = {
   name: "ZH Medsolutions",
   motto: "You Care For Your Patients. We Care For You.",
   tagline: "End-to-end medical billing for US healthcare providers.",
-  email: "contact@zhmedsolutions.org",
-  phone: "+1 (555) 010-0420",
-  address: "Wilmington, Delaware, USA",
-  website: "www.zhmedsolutions.org",
+  email: "info@zhmedsolutions.com",
+  phone: "+91-882-642-5482",
+  address: "Available by appointment",
+  website: "www.zhmedsolutions.com",
   logo: "https://customer-assets.emergentagent.com/job_c6fbacb9-b85a-476e-bf06-aa39de7b3ade/artifacts/4y8p3x2d_Image.jpg",
 };
