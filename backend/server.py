@@ -83,6 +83,8 @@ class ContactMessage(BaseModel):
 
 # ---------------- Static catalog ----------------
 SERVICES = [
+    {"id": "eligibility-verification", "name": "Eligibility Verification", "icon": "UserCheck", "description": "Real-time eligibility checks before every visit — no surprise denials."},
+    {"id": "benefit-verification", "name": "Benefit Verification", "icon": "ClipboardCheck", "description": "Detailed benefit & coverage verification with copay, deductible & auth requirements."},
     {"id": "era-enrollment", "name": "ERA Enrollment", "icon": "FileCheck2", "description": "Streamlined Electronic Remittance Advice enrollment with all major payers."},
     {"id": "credentialing", "name": "Credentialing", "icon": "BadgeCheck", "description": "Provider credentialing and re-credentialing across commercial and government payers."},
     {"id": "medical-coding", "name": "Medical Coding", "icon": "Code2", "description": "Certified coders for ICD-10, CPT, HCPCS with compliance-first accuracy."},

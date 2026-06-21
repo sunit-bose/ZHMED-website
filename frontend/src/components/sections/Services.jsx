@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import {
   FileCheck2, BadgeCheck, Code2, ClipboardEdit, Wallet, AlertTriangle,
   PhoneCall, ShieldAlert, Mailbox, Receipt, Gavel, TrendingDown, ArrowRight,
+  UserCheck, ClipboardCheck,
 } from "lucide-react";
 import { api } from "@/lib/api";
 
 const ICONS = {
   FileCheck2, BadgeCheck, Code2, ClipboardEdit, Wallet, AlertTriangle,
   PhoneCall, ShieldAlert, Mailbox, Receipt, Gavel, TrendingDown,
+  UserCheck, ClipboardCheck,
 };
 
 export default function Services() {
@@ -27,7 +29,7 @@ export default function Services() {
             Our Capabilities
           </div>
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
-            Twelve revenue-cycle disciplines.
+            Fourteen revenue-cycle disciplines.
             <br />
             <span className="text-slate-500">One quiet, accountable partner.</span>
           </h2>
