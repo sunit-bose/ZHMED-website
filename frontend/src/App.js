@@ -8,6 +8,7 @@ import Booking from "@/pages/Booking";
 import Resources from "@/pages/Resources";
 import ResourceDetail from "@/pages/ResourceDetail";
 import Admin from "@/pages/Admin";
+import WhatsAppFab from "@/components/WhatsAppFab";
 import { Toaster } from "@/components/ui/sonner";
 
 function ScrollToTop() {
@@ -32,6 +33,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <WhatsAppFab />
         <Toaster position="top-right" richColors />
       </BrowserRouter>
     </div>
