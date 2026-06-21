@@ -9,7 +9,6 @@ import Process from "@/components/sections/Process";
 import BrandBand from "@/components/sections/BrandBand";
 import About from "@/components/sections/About";
 import TrustBar from "@/components/sections/TrustBar";
-import BlogPreview from "@/components/sections/BlogPreview";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 
@@ -36,7 +35,6 @@ export default function Landing() {
       <BrandBand />
       <About />
       <TrustBar />
-      <BlogPreview />
       <FAQ />
       <Contact />
     </div>
