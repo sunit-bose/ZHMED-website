@@ -8,21 +8,8 @@ import { api, BRAND } from "@/lib/api";
 
 const COMPANY_LINKS = [
   { label: "About Us", href: "/#about" },
-  { label: "Security & Compliance", href: "soon" },
-  { label: "Corporate Social Responsibility", href: "soon" },
   { label: "Insights", href: "/resources" },
-  { label: "Careers", href: "soon" },
-  { label: "Investors", href: "soon" },
   { label: "Contact Us", href: "/#contact" },
-];
-
-const SOLUTION_LINKS = [
-  "Revenue Cycle Management",
-  "Patient Contact Solutions",
-  "HIM Solutions",
-  "Extended Business Office",
-  "Risk Adjustment HCC Coding Solutions",
-  "DME & HME Revenue Cycle Management",
 ];
 
 const LEGAL_LINKS = ["Privacy Policy", "Terms and Conditions", "Site Map"];
@@ -61,7 +48,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 lg:pt-20 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10">
           {/* Brand */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <div className="flex items-center gap-3 mb-5">
               <img
                 src={BRAND.logo}
@@ -93,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Company */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <h4 className="font-display font-semibold text-white mb-5 text-sm tracking-wider uppercase">Company</h4>
             <ul className="space-y-3 text-sm">
               {COMPANY_LINKS.map((l) => (
@@ -115,25 +102,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Solutions */}
-          <div className="lg:col-span-3">
-            <h4 className="font-display font-semibold text-white mb-5 text-sm tracking-wider uppercase">Solutions</h4>
-            <ul className="space-y-3 text-sm">
-              {SOLUTION_LINKS.map((l) => (
-                <li key={l}>
-                  <a
-                    href="/#services"
-                    className="hover:text-white transition"
-                  >
-                    {l}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Newsletter + Social */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-5">
             <h4 className="font-display font-semibold text-white mb-3 text-base leading-snug">
               Subscribe to our newsletter and be the first to know about our updates.
             </h4>
