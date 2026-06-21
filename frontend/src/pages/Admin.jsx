@@ -8,7 +8,7 @@ import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu";
-import { Lock, LogOut, MoreHorizontal, Calendar, Mail } from "lucide-react";
+import { Lock, LogOut, MoreHorizontal, Calendar, Mail, Send } from "lucide-react";
 import { toast } from "sonner";
 import { api, getAdminToken, setAdminToken, clearAdminToken, adminHeaders } from "@/lib/api";
 import { ADMIN } from "@/constants/testIds";
@@ -18,15 +18,18 @@ export default function Admin() {
   const [tokenInput, setTokenInput] = useState("");
   const [bookings, setBookings] = useState([]);
   const [contacts, setContacts] = useState([]);
+  const [subscribers, setSubscribers] = useState([]);
 
   const fetchAll = async () => {
     try {
-      const [b, c] = await Promise.all([
+      const [b, c, n] = await Promise.all([
         api.get("/bookings", adminHeaders()),
         api.get("/contact", adminHeaders()),
+        api.get("/newsletter", adminHeaders()),
       ]);
       setBookings(b.data.bookings || []);
       setContacts(c.data.messages || []);
+      setSubscribers(n.data.subscribers || []);
     } catch (err) {
       if (err?.response?.status === 401) {
         clearAdminToken();
@@ -118,16 +121,18 @@ export default function Admin() {
           </Button>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-5 mb-8">
+        <div className="grid sm:grid-cols-4 gap-5 mb-8">
           <StatCard label="Total bookings" value={bookings.length} icon={Calendar} />
           <StatCard label="Pending" value={bookings.filter((b) => b.status === "pending").length} icon={Calendar} tone="amber" />
           <StatCard label="Contact messages" value={contacts.length} icon={Mail} tone="blue" />
+          <StatCard label="Newsletter subs" value={subscribers.length} icon={Send} tone="green" />
         </div>
 
         <Tabs defaultValue="bookings" className="w-full">
           <TabsList className="bg-white border border-slate-200">
             <TabsTrigger data-testid={ADMIN.bookingsTab} value="bookings" className="font-display">Bookings</TabsTrigger>
             <TabsTrigger data-testid={ADMIN.contactsTab} value="contacts" className="font-display">Contact messages</TabsTrigger>
+            <TabsTrigger data-testid="admin-tab-newsletter" value="newsletter" className="font-display">Newsletter</TabsTrigger>
           </TabsList>
 
           <TabsContent value="bookings" className="mt-5">
@@ -219,6 +224,29 @@ export default function Admin() {
               </Table>
             </div>
           </TabsContent>
+
+          <TabsContent value="newsletter" className="mt-5">
+            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Subscribed</TableHead>
+                    <TableHead>Email</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {subscribers.length === 0 ? (
+                    <TableRow><TableCell colSpan={2} className="text-center text-slate-400 py-10">No subscribers yet</TableCell></TableRow>
+                  ) : subscribers.map((s) => (
+                    <TableRow key={s.id}>
+                      <TableCell className="text-xs text-slate-500 whitespace-nowrap">{s.created_at?.slice(0, 16).replace("T", " ")}</TableCell>
+                      <TableCell className="font-medium">{s.email}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </TabsContent>
         </Tabs>
       </div>
     </div>
@@ -229,6 +257,7 @@ function StatCard({ label, value, icon: Icon, tone }) {
   const tones = {
     amber: "bg-amber-50 text-amber-700",
     blue: "bg-blue-50 text-blue-700",
+    green: "bg-emerald-50 text-emerald-700",
   };
   return (
     <div className="bg-white border border-slate-200 rounded-xl p-5 flex items-center gap-4">

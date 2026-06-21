@@ -81,6 +81,17 @@ class ContactMessage(BaseModel):
     created_at: str = Field(default_factory=_utc_now_iso)
 
 
+class NewsletterSubscribe(BaseModel):
+    email: EmailStr
+
+
+class NewsletterSubscriber(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=_new_id)
+    email: str
+    created_at: str = Field(default_factory=_utc_now_iso)
+
+
 # ---------------- Static catalog ----------------
 SERVICES = [
     {"id": "eligibility-verification", "name": "Eligibility Verification", "icon": "UserCheck", "description": "Real-time eligibility checks before every visit — no surprise denials."},
@@ -278,6 +289,23 @@ async def submit_contact(payload: ContactCreate):
 async def list_contact():
     docs = await db.contacts.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
     return {"messages": docs}
+
+
+@api_router.post("/newsletter", response_model=NewsletterSubscriber)
+async def subscribe_newsletter(payload: NewsletterSubscribe):
+    existing = await db.newsletter.find_one({"email": payload.email.lower()})
+    if existing:
+        # idempotent — don't reveal whether email already exists, just return success
+        return NewsletterSubscriber(email=payload.email.lower(), id=existing.get("id", _new_id()), created_at=existing.get("created_at", _utc_now_iso()))
+    sub = NewsletterSubscriber(email=payload.email.lower())
+    await db.newsletter.insert_one(sub.model_dump())
+    return sub
+
+
+@api_router.get("/newsletter", dependencies=[Depends(admin_auth)])
+async def list_newsletter():
+    docs = await db.newsletter.find({}, {"_id": 0}).sort("created_at", -1).to_list(2000)
+    return {"subscribers": docs}
 
 
 @api_router.post("/admin/verify")
