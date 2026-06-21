@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Process from "@/components/sections/Process";
+import BrandBand from "@/components/sections/BrandBand";
 import About from "@/components/sections/About";
 import BlogPreview from "@/components/sections/BlogPreview";
 import Contact from "@/components/sections/Contact";
@@ -24,6 +25,7 @@ export default function Landing() {
       <Hero />
       <Services />
       <Process />
+      <BrandBand />
       <About />
       <BlogPreview />
       <Contact />

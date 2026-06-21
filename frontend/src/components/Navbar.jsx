@@ -54,11 +54,14 @@ export default function Navbar() {
           data-testid={HOME.navLogo}
           className="flex items-center gap-3 group"
         >
-          <img
-            src={BRAND.logo}
-            alt="ZH Medsolutions"
-            className="h-10 w-10 rounded-md object-cover ring-1 ring-slate-200"
-          />
+          <div className="relative">
+            <span className="absolute -inset-1 rounded-lg bg-[#A8C5D6]/40 blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
+            <img
+              src={BRAND.logo}
+              alt="ZH Medsolutions"
+              className="relative h-11 w-11 rounded-lg object-cover ring-1 ring-[#2E5A6E]/15 shadow-[0_2px_8px_rgba(46,90,110,0.15)]"
+            />
+          </div>
           <div className="leading-tight hidden sm:block">
             <div className="font-display font-extrabold text-[15px] text-slate-900 tracking-tight">
               ZH Medsolutions

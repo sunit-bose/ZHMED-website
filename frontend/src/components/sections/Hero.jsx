@@ -53,9 +53,9 @@ export default function Hero() {
             </div>
 
             <div className="mt-10 grid grid-cols-3 gap-6 max-w-xl">
-              <Stat value="98%" label="Clean claim rate" />
-              <Stat value="< 30" label="Days in AR" />
-              <Stat value="40%" label="Faster denials TAT" />
+              <Stat value="98.5%" label="First-pass resolution" />
+              <Stat value="30-35" label="Days in AR" />
+              <Stat value="5-10%" label="Denial rate" />
             </div>
           </div>
 
@@ -70,11 +70,11 @@ export default function Hero() {
                   </div>
                   <span className="text-[11px] tracking-widest uppercase text-emerald-600 font-bold bg-emerald-50 px-2 py-1 rounded">live</span>
                 </div>
-                <Row label="Avg Days in AR" value="27 days" tone="green" />
-                <Row label="Denial Rate" value="3.4%" tone="green" />
-                <Row label="First-Pass Resolution" value="94.6%" tone="green" />
+                <Row label="Avg Days in AR" value="30-35 days" tone="green" />
+                <Row label="Denial Rate" value="5-10%" tone="green" />
+                <Row label="First-Pass Resolution" value="98.5%" tone="green" />
                 <Row label="Credentialing TAT" value="51 days" tone="blue" />
-                <Row label="ERA Posting SLA" value="< 24h" tone="blue" last />
+                <Row label="ERA Posting SLA" value="within 48h" tone="blue" last />
                 <div className="mt-5 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500">
                   <ShieldCheck className="h-3.5 w-3.5 text-[#2E5A6E]" />
                   HIPAA-aligned · SOC 2 ready workflows
