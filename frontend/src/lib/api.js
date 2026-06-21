@@ -36,5 +36,5 @@ export const BRAND = {
   phone: "+91-882-642-5482",
   address: "Available by appointment",
   website: "www.zhmedsolutions.com",
-  logo: "https://customer-assets.emergentagent.com/job_c6fbacb9-b85a-476e-bf06-aa39de7b3ade/artifacts/4y8p3x2d_Image.jpg",
+  logo: "https://customer-assets.emergentagent.com/job_provider-billing-hub/artifacts/6f0rr4pd_IMG_2401.PNG",
 };
