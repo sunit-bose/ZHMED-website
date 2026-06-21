@@ -8,6 +8,7 @@ import Booking from "@/pages/Booking";
 import Resources from "@/pages/Resources";
 import ResourceDetail from "@/pages/ResourceDetail";
 import Admin from "@/pages/Admin";
+import { CaseStudies, CaseStudyDetail } from "@/pages/CaseStudies";
 import WhatsAppFab from "@/components/WhatsAppFab";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -29,6 +30,8 @@ function App() {
             <Route path="/book" element={<Booking />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/resources/:slug" element={<ResourceDetail />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>

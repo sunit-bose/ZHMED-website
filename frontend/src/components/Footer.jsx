@@ -8,6 +8,7 @@ import { api, BRAND } from "@/lib/api";
 
 const COMPANY_LINKS = [
   { label: "About Us", href: "/#about" },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "Insights", href: "/resources" },
   { label: "Contact Us", href: "/#contact" },
 ];

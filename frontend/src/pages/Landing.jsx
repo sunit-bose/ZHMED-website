@@ -4,6 +4,7 @@ import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Specialties from "@/components/sections/Specialties";
 import PainPoints from "@/components/sections/PainPoints";
+import ForWhom from "@/components/sections/ForWhom";
 import Process from "@/components/sections/Process";
 import BrandBand from "@/components/sections/BrandBand";
 import About from "@/components/sections/About";
@@ -30,6 +31,7 @@ export default function Landing() {
       <PainPoints />
       <Services />
       <Specialties />
+      <ForWhom />
       <Process />
       <BrandBand />
       <About />

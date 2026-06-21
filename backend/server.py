@@ -211,6 +211,129 @@ async def get_blog(slug: str):
     raise HTTPException(status_code=404, detail="Post not found")
 
 
+CASE_STUDIES = [
+    {
+        "id": "cs-1",
+        "slug": "ortho-group-aged-ar-recovery",
+        "specialty": "Orthopedics",
+        "title": "Texas Ortho Group: $1.2M Aged AR Recovered in 90 Days",
+        "summary": "A 9-provider orthopedic practice partnered with us to tackle a swelling 90+ AR bucket and rising denials from a major commercial payer.",
+        "metrics": [
+            {"label": "Aged AR recovered", "value": "$1.2M"},
+            {"label": "Days in AR ↓", "value": "-18"},
+            {"label": "Denials ↓", "value": "32%"},
+        ],
+        "sections": [
+            {"heading": "The problem", "body": "9 providers, 18 months of growth, no dedicated denial team. Aged 90+ AR had ballooned to $3.4M and the office staff was burning two days a week on payer phone calls. Days in AR were averaging 52."},
+            {"heading": "What we did", "body": "We embedded a dedicated 4-person team (1 AR lead, 2 AR specialists, 1 denials analyst) inside the practice's existing PM/EHR. We prioritized aged buckets by propensity-to-pay, rebuilt payer-specific call cadences, and re-coded 312 claims that had been undercoded due to missing modifiers."},
+            {"heading": "The outcome", "body": "Within 90 days we recovered $1.2M from the aged bucket, brought Days in AR from 52 to 34, and reduced the practice's overall denial rate by 32%. The front-desk team got their two days a week back to focus on patient experience."},
+        ],
+    },
+    {
+        "id": "cs-2",
+        "slug": "behavioral-health-credentialing-fasttrack",
+        "specialty": "Behavioral Health",
+        "title": "Behavioral Health Network: 14 Providers Credentialed in 60 Days",
+        "summary": "A growing multi-state behavioral health network needed to onboard new clinicians fast — without losing months of billable revenue per provider.",
+        "metrics": [
+            {"label": "Providers credentialed", "value": "14"},
+            {"label": "Avg TAT", "value": "58 days"},
+            {"label": "Revenue protected", "value": "$890K"},
+        ],
+        "sections": [
+            {"heading": "The problem", "body": "Each new behavioral health clinician was sitting unbilled for an average of 110 days while credentialing crawled through Medicare, Medicaid and 12 commercial payers. The CFO estimated $60K-$80K lost revenue per provider."},
+            {"heading": "What we did", "body": "We built a 60-day fast-track checklist with parallel payer submissions, CAQH attestation automation, and a daily payer follow-up cadence. Hospital privileges and group linkages were sequenced in week 5 to prevent stalls."},
+            {"heading": "The outcome", "body": "14 new clinicians were enrolled and effective in an average of 58 days — nearly half the original timeline. Approximate revenue protected: $890K in the first year alone."},
+        ],
+    },
+    {
+        "id": "cs-3",
+        "slug": "fqhc-coding-quality-uplift",
+        "specialty": "FQHC",
+        "title": "FQHC in the Midwest: Coding Accuracy 92% → 99.1%",
+        "summary": "A federally qualified health center was losing revenue from undercoding and HRSA audit-flagged charts. We rebuilt their coding QA loop.",
+        "metrics": [
+            {"label": "Coding accuracy", "value": "99.1%"},
+            {"label": "Audit flags ↓", "value": "76%"},
+            {"label": "Net collections ↑", "value": "11.4%"},
+        ],
+        "sections": [
+            {"heading": "The problem", "body": "An FQHC with 6 sites was failing internal coding audits at a 23% flag rate. Underbilled E&M codes and chronic care management opportunities were being missed."},
+            {"heading": "What we did", "body": "We placed AAPC-certified FQHC coders on the account, set a daily 10% chart-review QA loop, and rebuilt CCM and wellness-visit capture playbooks. Coders met weekly with providers for documentation feedback."},
+            {"heading": "The outcome", "body": "Coding accuracy climbed from 92% to 99.1% within 4 months. Audit flags dropped by 76%. Net collections rose 11.4% from properly captured E&M and CCM revenue."},
+        ],
+    },
+    {
+        "id": "cs-4",
+        "slug": "cardiology-denial-management",
+        "specialty": "Cardiology",
+        "title": "Cardiology Practice: First-Pass Resolution from 84% to 98.7%",
+        "summary": "A 5-physician cardiology practice was bleeding cash on rework. We turned their denial loop into a root-cause feedback engine.",
+        "metrics": [
+            {"label": "First-pass rate", "value": "98.7%"},
+            {"label": "Rework hours ↓", "value": "61%"},
+            {"label": "Avg pay TAT", "value": "12 days"},
+        ],
+        "sections": [
+            {"heading": "The problem", "body": "16% of cardiology claims were being denied on first submission — mostly due to medical-necessity attachments, missing prior auths and incorrect modifiers. Rework was consuming 32 staff hours/week."},
+            {"heading": "What we did", "body": "We tagged every CARC/RARC by root cause, built payer-specific rules into the pre-submission scrubber, and fed weekly denial root-cause reports to the front desk and coders."},
+            {"heading": "The outcome", "body": "First-pass resolution moved from 84% to 98.7% in 60 days. Weekly rework dropped 61%. Average payment turnaround shrank from 34 days to 12."},
+        ],
+    },
+    {
+        "id": "cs-5",
+        "slug": "ref-lab-era-posting-acceleration",
+        "specialty": "Independent Labs",
+        "title": "Reference Lab: ERA Posting from 6 Days to Under 24 Hours",
+        "summary": "An independent reference lab had ERA posting backlogs that masked reconciliation issues. We rebuilt their posting layer.",
+        "metrics": [
+            {"label": "ERA posting SLA", "value": "<24h"},
+            {"label": "Unreconciled ↓", "value": "89%"},
+            {"label": "Cash velocity ↑", "value": "22%"},
+        ],
+        "sections": [
+            {"heading": "The problem", "body": "A 40k claims/month reference lab was posting ERAs an average of 6 days after receipt. Unreconciled cash sat in a suspense bucket worth ~$450K at any given time."},
+            {"heading": "What we did", "body": "We enrolled the remaining 14 payers for true ERA delivery, automated 837/835 matching, and built a daily exception queue for human review on mismatched line items."},
+            {"heading": "The outcome", "body": "ERA posting SLA collapsed from 6 days to under 24 hours. Unreconciled balances fell 89%. Cash flow velocity improved 22%."},
+        ],
+    },
+    {
+        "id": "cs-6",
+        "slug": "hospital-edi-rejection-sweep",
+        "specialty": "Hospital System",
+        "title": "Community Hospital: EDI Rejection Backlog Cleared in 5 Weeks",
+        "summary": "A 240-bed community hospital had a 4,800-claim EDI rejection backlog blocking clean reimbursement.",
+        "metrics": [
+            {"label": "Backlog cleared", "value": "4,800"},
+            {"label": "$ recovered", "value": "$2.3M"},
+            {"label": "Sweep cadence", "value": "Daily"},
+        ],
+        "sections": [
+            {"heading": "The problem", "body": "Hospital EDI rejections were piling up across 3 clearinghouses. The legacy team only swept the queue weekly — and only the top 100 by dollar value."},
+            {"heading": "What we did", "body": "We deployed a 6-person sweep team that worked rejections by payer + edit type, escalating high-priority denials within 24 hours and resubmitting corrections same-day."},
+            {"heading": "The outcome", "body": "The 4,800-claim backlog was cleared in 5 weeks. $2.3M in previously stuck claims started flowing again. Sweep cadence moved from weekly to daily."},
+        ],
+    },
+]
+
+
+@api_router.get("/case-studies")
+async def list_case_studies():
+    items = [
+        {k: v for k, v in c.items() if k != "sections"}
+        for c in CASE_STUDIES
+    ]
+    return {"items": items}
+
+
+@api_router.get("/case-studies/{slug}")
+async def get_case_study(slug: str):
+    for c in CASE_STUDIES:
+        if c["slug"] == slug:
+            return c
+    raise HTTPException(status_code=404, detail="Case study not found")
+
+
 @api_router.get("/bookings/availability")
 async def availability(date_str: str):
     """Return available time slots for a date (YYYY-MM-DD)."""
