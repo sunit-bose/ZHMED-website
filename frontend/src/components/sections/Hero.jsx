@@ -6,7 +6,7 @@ import { HOME } from "@/constants/testIds";
 export default function Hero() {
   const navigate = useNavigate();
   return (
-    <section className="relative pt-32 lg:pt-40 pb-20 lg:pb-32 overflow-hidden hero-gradient">
+    <section className="relative pt-28 lg:pt-32 pb-14 lg:pb-20 overflow-hidden hero-gradient">
       <div className="absolute inset-0 hero-grid pointer-events-none" />
       <div className="absolute inset-0 heart-pulse-bg pointer-events-none opacity-70" />
 
