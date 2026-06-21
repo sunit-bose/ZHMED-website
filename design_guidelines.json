@@ -1,0 +1,100 @@
+{
+  "theme": "LIGHT",
+  "archetype": "Organic & Earthy / Medical Clean",
+  "brand_colors": {
+    "primary": "#2E5A6E",
+    "primary_light": "#3B728C",
+    "primary_dark": "#1E3D4A",
+    "secondary": "#A8C5D6",
+    "secondary_light": "#E8F0F4",
+    "background": "#FAFCFD",
+    "surface": "#FFFFFF",
+    "text_primary": "#0F172A",
+    "text_secondary": "#475569",
+    "border": "#E2E8F0"
+  },
+  "typography": {
+    "heading_font": "Manrope",
+    "body_font": "IBM Plex Sans",
+    "accent_font": "Spectral",
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight font-extrabold text-slate-900",
+      "h2": "text-3xl sm:text-4xl tracking-tight font-bold text-slate-900",
+      "h3": "text-2xl sm:text-3xl tracking-tight font-semibold text-slate-900",
+      "h4": "text-xl sm:text-2xl tracking-tight font-medium text-slate-900",
+      "body": "text-base leading-relaxed text-slate-600",
+      "small": "text-sm text-slate-500",
+      "overline": "text-xs tracking-[0.2em] uppercase font-bold text-[#2E5A6E]"
+    }
+  },
+  "spacing_and_layout": {
+    "container": "max-w-7xl mx-auto px-6 lg:px-8",
+    "section": "py-20 lg:py-32",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8",
+    "border_radius": "rounded-xl",
+    "shadows": {
+      "card": "shadow-[0_2px_10px_-3px_rgba(46,90,110,0.1)]",
+      "hover": "shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
+    }
+  },
+  "components": {
+    "navbar": {
+      "style": "Glassmorphism over Hero / Solid white on scroll. Sticky top, z-50",
+      "logo": "Must display company logo. Top-left.",
+      "links": "Hidden on mobile behind hamburger menu. Visible on desktop. Text: Manrope, font-medium, hover:text-[#2E5A6E].",
+      "cta": "Book a Consultation button (Solid Primary bg, white text, rounded-md, hover:bg-[#1E3D4A])"
+    },
+    "hero": {
+      "layout": "Left-aligned content with a subtle background image overlay or a clean split layout.",
+      "background": "Soft #E8F0F4 or white with very subtle gradients. Not dark.",
+      "motto": "You Care For Your Patients, We Care For You",
+      "cta": "Primary action 'Book a Consultation' linking to booking flow."
+    },
+    "service_cards": {
+      "layout": "Grid with 11 items. 3 columns on desktop. Clean white background, 1px subtle border.",
+      "icons": "Lucide-react icons in a soft circle background (bg-[#E8F0F4], text-[#2E5A6E]).",
+      "hover_state": "-translate-y-1 transition-all shadow-[0_8px_30px_rgb(0,0,0,0.08)] border-[#2E5A6E]/20"
+    },
+    "stats_process": {
+      "layout": "Grid 2-column or horizontal timeline.",
+      "style": "Dark section (bg-[#2E5A6E]) with white text, or clean white with primary borders."
+    },
+    "booking_form": {
+      "layout": "Multi-step form using Shadcn Card. Max width 2xl mx-auto.",
+      "steps": ["Service Selection", "Date (Shadcn Calendar)", "Time Slot (Grid of buttons)", "Contact Details (Shadcn Form)", "Confirmation"],
+      "accents": "Progress bar using primary color. Enforce business hours: Mon-Sun 9 AM - 6 PM EST."
+    },
+    "admin_dashboard": {
+      "layout": "Sidebar + Main content area. Clean, cardless or simple table design.",
+      "table": "Shadcn Table for bookings and contacts. High density, clear typography."
+    },
+    "footer": {
+      "layout": "Dark background (bg-[#1E3D4A]). 4 columns: Logo/About, Quick Links, Services, Contact.",
+      "text": "text-slate-300 hover:text-white"
+    }
+  },
+  "media": {
+    "logos": {
+      "company_logo": "https://customer-assets.emergentagent.com/job_c6fbacb9-b85a-476e-bf06-aa39de7b3ade/artifacts/4y8p3x2d_Image.jpg",
+      "brand_poster": "https://customer-assets.emergentagent.com/job_c6fbacb9-b85a-476e-bf06-aa39de7b3ade/artifacts/w2p3mes4_IMG_2401.PNG"
+    },
+    "images": {
+      "hero_background": "https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "about_us": "https://images.unsplash.com/photo-1639154968821-6dbc3efb8d23?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwyfHxtZWRpY2FsJTIwcHJvZmVzc2lvbmFsJTIwbW9kZXJuJTIwaG9zcGl0YWx8ZW58MHx8fHwxNzgyMDc3Njg4fDA&ixlib=rb-4.1.0&q=85",
+      "resources_finance": "https://images.unsplash.com/photo-1746221331496-a87689fc8eb9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHxmaW5hbmNlJTIwZG9jdW1lbnRzJTIwb2ZmaWNlfGVufDB8fHx8MTc4MjA3NzY4OHww&ixlib=rb-4.1.0&q=85",
+      "dashboard_preview": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlJTIwdGVjaG5vbG9neSUyMGRhc2hib2FyZHxlbnwwfHx8fDE3ODIwNzc2ODh8MA&ixlib=rb-4.1.0&q=85"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Use Manrope for all headings and IBM Plex Sans for body text.",
+    "Implement lucide-react icons for services.",
+    "Do NOT use placeholder images; use the provided media URLs.",
+    "Use the primary color (#2E5A6E) for CTAs, active states, and dark sections.",
+    "Ensure the booking form restricts times to Mon-Sun 9 AM - 6 PM EST.",
+    "Add 'data-testid' to all interactive elements to support testability.",
+    "Build the dashboard using Shadcn Table component. Keep it lightweight.",
+    "Marketing sections should use generous padding (py-24 or py-32).",
+    "Avoid completely transparent headers if content scrolls underneath; use backdrop-blur and a semi-transparent white/bg.",
+    "Use the 11 specific services outlined: ERA Enrollment, Credentialing, Medical Coding, Charge Entry, Payment Posting, EDI Rejection, AR Followup, Denial Followup, Correspondence & Documentation, Patient Statement, Appeal Submission, Credit Balance."
+  ]
+}
