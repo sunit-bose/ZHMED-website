@@ -63,7 +63,7 @@ function Column({ data }) {
 
 export default function ForWhom() {
   return (
-    <section className="py-14 lg:py-20 bg-white">
+    <section className="py-10 lg:py-14 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="max-w-3xl mb-10">
           <div className="text-[12px] tracking-[0.22em] uppercase font-bold text-[#2E5A6E] mb-3">

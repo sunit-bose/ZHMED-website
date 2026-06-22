@@ -11,7 +11,7 @@ const BADGES = [
 
 export default function TrustBar() {
   return (
-    <section className="py-12 lg:py-14 bg-[#1E3D4A]/[0.03] border-y border-slate-200/70">
+    <section className="py-9 lg:py-12 bg-[#1E3D4A]/[0.03] border-y border-slate-200/70">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-8">
           <div className="text-[11px] tracking-[0.25em] uppercase font-bold text-[#2E5A6E] mb-2">

@@ -29,6 +29,14 @@ export default function Navbar() {
 
   const goHash = (to) => {
     setOpen(false);
+    if (to === "/") {
+      if (location.pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/");
+      }
+      return;
+    }
     if (to.startsWith("/#")) {
       const id = to.slice(2);
       if (location.pathname !== "/") {

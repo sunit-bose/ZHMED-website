@@ -31,7 +31,7 @@ const TOTAL = GROUPS.reduce((n, g) => n + g.items.length, 0);
 export default function Specialties() {
   const navigate = useNavigate();
   return (
-    <section className="py-12 lg:py-16 bg-white border-y border-slate-100">
+    <section className="py-10 lg:py-14 bg-white border-y border-slate-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           {/* Left: heading + stat */}
@@ -52,7 +52,7 @@ export default function Specialties() {
                   {TOTAL}+
                 </span>
                 <span className="text-[11px] tracking-wider uppercase text-slate-500 mt-1">
-                  Specialties live
+                  Specialties
                 </span>
               </div>
               <div className="h-12 w-px bg-slate-200" />
@@ -91,9 +91,6 @@ export default function Specialties() {
                   <div className="h-10 w-10 rounded-lg bg-[#E8F0F4] text-[#2E5A6E] grid place-items-center group-hover:bg-[#2E5A6E] group-hover:text-white transition-colors">
                     <g.icon className="h-5 w-5" />
                   </div>
-                  <span className="text-[11px] tracking-wider uppercase font-bold text-slate-400">
-                    {g.items.length} live
-                  </span>
                 </div>
                 <h3 className="font-display text-[15px] font-bold text-slate-900 mb-3">
                   {g.label}

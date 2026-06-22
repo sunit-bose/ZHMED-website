@@ -11,7 +11,7 @@ const points = [
 
 export default function About() {
   return (
-    <section id="about" className="py-14 lg:py-20 bg-white">
+    <section id="about" className="py-10 lg:py-14 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <div className="relative">
