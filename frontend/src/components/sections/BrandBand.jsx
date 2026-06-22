@@ -24,7 +24,7 @@ export default function BrandBand() {
         />
       </svg>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-9 lg:py-12">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-7 lg:py-9">
         <div className="grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-[11px] tracking-[0.2em] uppercase font-bold text-[#A8C5D6] mb-5">

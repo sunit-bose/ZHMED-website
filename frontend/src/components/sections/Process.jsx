@@ -9,7 +9,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="py-10 lg:py-14 bg-[#FAFCFD]">
+    <section className="py-8 lg:py-10 bg-[#FAFCFD]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="max-w-3xl mb-14">
           <div className="text-[12px] tracking-[0.22em] uppercase font-bold text-[#2E5A6E] mb-4">

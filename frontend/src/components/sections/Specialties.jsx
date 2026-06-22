@@ -31,7 +31,7 @@ const TOTAL = GROUPS.reduce((n, g) => n + g.items.length, 0);
 export default function Specialties() {
   const navigate = useNavigate();
   return (
-    <section className="py-10 lg:py-14 bg-white border-y border-slate-100">
+    <section className="py-8 lg:py-10 bg-white border-y border-slate-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           {/* Left: heading + stat */}
