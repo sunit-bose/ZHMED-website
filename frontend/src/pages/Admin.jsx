@@ -4,14 +4,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
-  DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator
-} from "@/components/ui/dropdown-menu";
-import { Lock, LogOut, MoreHorizontal, Calendar, Mail, Send } from "lucide-react";
+import { Lock, LogOut, Calendar, Mail, Send, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
 import { api, getAdminToken, setAdminToken, clearAdminToken, adminHeaders } from "@/lib/api";
 import { ADMIN } from "@/constants/testIds";
+import { STATUS_MAP, TONE_CLASSES, statusLabel } from "@/lib/pipeline";
+import BookingDetailSheet from "@/components/admin/BookingDetailSheet";
 
 export default function Admin() {
   const [authed, setAuthed] = useState(!!getAdminToken());
@@ -19,6 +17,7 @@ export default function Admin() {
   const [bookings, setBookings] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [subscribers, setSubscribers] = useState([]);
+  const [selectedBooking, setSelectedBooking] = useState(null);
 
   const fetchAll = async () => {
     try {
@@ -56,8 +55,8 @@ export default function Admin() {
 
   const updateStatus = async (id, status) => {
     try {
-      await api.patch(`/bookings/${id}/status?status=${status}`, null, adminHeaders());
-      toast.success(`Marked ${status}`);
+      await api.patch(`/bookings/${id}/status`, { status }, adminHeaders());
+      toast.success(`Marked ${statusLabel(status)}`);
       fetchAll();
     } catch {
       toast.error("Could not update status.");
@@ -93,13 +92,6 @@ export default function Admin() {
       </div>
     );
   }
-
-  const statusTone = (s) => ({
-    pending: "bg-amber-100 text-amber-800",
-    confirmed: "bg-emerald-100 text-emerald-800",
-    completed: "bg-blue-100 text-blue-800",
-    cancelled: "bg-red-100 text-red-700",
-  })[s] || "bg-slate-100 text-slate-700";
 
   return (
     <div className="min-h-screen pt-28 lg:pt-32 pb-24 bg-[#FAFCFD]">
@@ -141,50 +133,60 @@ export default function Admin() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>When</TableHead>
-                    <TableHead>Service</TableHead>
                     <TableHead>Client</TableHead>
-                    <TableHead>Contact</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
+                    <TableHead>Service</TableHead>
+                    <TableHead>Stage</TableHead>
+                    <TableHead>Last update</TableHead>
+                    <TableHead className="w-12"></TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {bookings.length === 0 ? (
                     <TableRow><TableCell colSpan={6} className="text-center text-slate-400 py-10">No bookings yet</TableCell></TableRow>
-                  ) : bookings.map((b) => (
-                    <TableRow key={b.id}>
-                      <TableCell>
-                        <div className="font-display font-semibold">{b.date}</div>
-                        <div className="text-xs text-slate-500">{b.time_slot} EST</div>
-                      </TableCell>
-                      <TableCell className="capitalize">{b.service}</TableCell>
-                      <TableCell>
-                        <div className="font-medium">{b.full_name}</div>
-                        {b.company && <div className="text-xs text-slate-500">{b.company}</div>}
-                      </TableCell>
-                      <TableCell>
-                        <div className="text-sm">{b.email}</div>
-                        <div className="text-xs text-slate-500">{b.phone}</div>
-                      </TableCell>
-                      <TableCell>
-                        <Badge className={`${statusTone(b.status)} border-0 capitalize`}>{b.status}</Badge>
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="sm"><MoreHorizontal className="h-4 w-4" /></Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>Update status</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => updateStatus(b.id, "confirmed")}>Confirm</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => updateStatus(b.id, "completed")}>Mark completed</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => updateStatus(b.id, "cancelled")} className="text-red-600">Cancel</DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  ) : bookings.map((b) => {
+                    const meta = STATUS_MAP[b.status];
+                    const tone = meta?.tone || "slate";
+                    const lastEntry = (b.status_history || []).slice(-1)[0];
+                    return (
+                      <TableRow
+                        key={b.id}
+                        onClick={() => setSelectedBooking(b)}
+                        className="cursor-pointer hover:bg-[#FAFCFD]"
+                        data-testid={`booking-row-${b.id}`}
+                      >
+                        <TableCell>
+                          <div className="font-display font-semibold">{b.date}</div>
+                          <div className="text-xs text-slate-500">{b.time_slot} EST</div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="font-medium">{b.full_name}</div>
+                          {b.company && <div className="text-xs text-slate-500">{b.company}</div>}
+                          <div className="text-xs text-slate-500">{b.email}</div>
+                        </TableCell>
+                        <TableCell className="capitalize text-sm">{b.service?.replace(/-/g, " ")}</TableCell>
+                        <TableCell>
+                          <Badge className={`${TONE_CLASSES[tone]} border font-display font-semibold`}>
+                            {meta?.label || b.status}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-xs text-slate-500">
+                          {lastEntry ? (
+                            <>
+                              {new Date(lastEntry.at).toLocaleDateString()}
+                              {lastEntry.lag_days > 0 && (
+                                <span className="ml-1 text-slate-400">(+{lastEntry.lag_days}d)</span>
+                              )}
+                            </>
+                          ) : (
+                            "—"
+                          )}
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <ChevronRight className="h-4 w-4 text-slate-400" />
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </div>
@@ -249,6 +251,13 @@ export default function Admin() {
           </TabsContent>
         </Tabs>
       </div>
+
+      <BookingDetailSheet
+        booking={selectedBooking}
+        open={!!selectedBooking}
+        onOpenChange={(o) => { if (!o) setSelectedBooking(null); }}
+        onChanged={fetchAll}
+      />
     </div>
   );
 }

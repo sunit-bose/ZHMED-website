@@ -1,10 +1,11 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Header, Depends
+from fastapi import FastAPI, APIRouter, HTTPException, Header, Depends, UploadFile, File, Form
 from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import base64
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional, Annotated
@@ -47,6 +48,34 @@ class BookingCreate(BaseModel):
     notes: Optional[str] = None
 
 
+VALID_STATUSES = [
+    # Initial call lifecycle
+    "pending", "confirmed", "completed", "cancelled",
+    # Pricing
+    "pricing_initiated", "pricing_discussion_open", "pricing_discussion_closed",
+    # Deal pipeline
+    "deal_creation_pending", "deal_created", "deal_sent_to_customer",
+    "deal_under_re_evaluation", "deal_re_shared", "deal_signed",
+    # Final
+    "closed",
+]
+
+DOCUMENT_CATEGORIES = {"pricing", "initial_deal", "re_evaluated_deal", "final_deal"}
+MAX_FILE_BYTES = 8 * 1024 * 1024  # 8 MB
+
+
+class StatusEntry(BaseModel):
+    status: str
+    at: str
+    note: Optional[str] = None
+    lag_days: float = 0
+
+
+class StatusUpdate(BaseModel):
+    status: str
+    note: Optional[str] = None
+
+
 class Booking(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=_new_id)
@@ -59,6 +88,7 @@ class Booking(BaseModel):
     time_slot: str
     notes: Optional[str] = None
     status: str = "pending"
+    status_history: List[StatusEntry] = Field(default_factory=list)
     created_at: str = Field(default_factory=_utc_now_iso)
 
 
@@ -381,6 +411,9 @@ async def create_booking(payload: BookingCreate):
         raise HTTPException(status_code=409, detail="This slot is no longer available. Please pick another time.")
 
     booking = Booking(**payload.model_dump())
+    booking.status_history = [
+        StatusEntry(status="pending", at=booking.created_at, note="Booking created", lag_days=0)
+    ]
     await db.bookings.insert_one(booking.model_dump())
     return booking
 
@@ -392,13 +425,110 @@ async def list_bookings():
 
 
 @api_router.patch("/bookings/{booking_id}/status", dependencies=[Depends(admin_auth)])
-async def update_booking_status(booking_id: str, status: str):
-    if status not in {"pending", "confirmed", "completed", "cancelled"}:
+async def update_booking_status(booking_id: str, payload: StatusUpdate):
+    if payload.status not in VALID_STATUSES:
         raise HTTPException(status_code=400, detail="Invalid status")
-    res = await db.bookings.update_one({"id": booking_id}, {"$set": {"status": status}})
-    if res.matched_count == 0:
+    doc = await db.bookings.find_one({"id": booking_id})
+    if not doc:
         raise HTTPException(status_code=404, detail="Booking not found")
-    return {"id": booking_id, "status": status}
+
+    now = datetime.now(timezone.utc)
+    history = doc.get("status_history") or []
+
+    # Backfill initial entry for older bookings without history
+    if not history:
+        history.append({
+            "status": doc.get("status", "pending"),
+            "at": doc.get("created_at") or now.isoformat(),
+            "note": "Booking created",
+            "lag_days": 0,
+        })
+
+    last_at_str = history[-1]["at"]
+    try:
+        last_at = datetime.fromisoformat(last_at_str)
+    except (ValueError, TypeError):
+        last_at = now
+    lag_days = round((now - last_at).total_seconds() / 86400, 2)
+
+    history.append({
+        "status": payload.status,
+        "at": now.isoformat(),
+        "note": payload.note,
+        "lag_days": lag_days,
+    })
+    await db.bookings.update_one(
+        {"id": booking_id},
+        {"$set": {"status": payload.status, "status_history": history}},
+    )
+    return {"id": booking_id, "status": payload.status, "status_history": history}
+
+
+@api_router.get("/bookings/{booking_id}", dependencies=[Depends(admin_auth)])
+async def get_booking(booking_id: str):
+    doc = await db.bookings.find_one({"id": booking_id}, {"_id": 0})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Booking not found")
+    return doc
+
+
+@api_router.post("/bookings/{booking_id}/documents", dependencies=[Depends(admin_auth)])
+async def upload_document(
+    booking_id: str,
+    category: str = Form(...),
+    note: Optional[str] = Form(None),
+    file: UploadFile = File(...),
+):
+    if category not in DOCUMENT_CATEGORIES:
+        raise HTTPException(status_code=400, detail="Invalid category")
+    booking = await db.bookings.find_one({"id": booking_id})
+    if not booking:
+        raise HTTPException(status_code=404, detail="Booking not found")
+
+    content = await file.read()
+    if len(content) > MAX_FILE_BYTES:
+        raise HTTPException(status_code=413, detail=f"File too large (max {MAX_FILE_BYTES // 1024 // 1024} MB)")
+    if not content:
+        raise HTTPException(status_code=400, detail="Empty file")
+
+    doc = {
+        "id": _new_id(),
+        "booking_id": booking_id,
+        "category": category,
+        "filename": file.filename,
+        "content_type": file.content_type or "application/octet-stream",
+        "size": len(content),
+        "content_base64": base64.b64encode(content).decode("ascii"),
+        "uploaded_at": _utc_now_iso(),
+        "note": note,
+    }
+    await db.booking_documents.insert_one(doc)
+    return {k: v for k, v in doc.items() if k not in ("content_base64", "_id")}
+
+
+@api_router.get("/bookings/{booking_id}/documents", dependencies=[Depends(admin_auth)])
+async def list_documents(booking_id: str):
+    docs = await db.booking_documents.find(
+        {"booking_id": booking_id},
+        {"_id": 0, "content_base64": 0},
+    ).sort("uploaded_at", -1).to_list(500)
+    return {"documents": docs}
+
+
+@api_router.get("/documents/{doc_id}", dependencies=[Depends(admin_auth)])
+async def get_document(doc_id: str):
+    doc = await db.booking_documents.find_one({"id": doc_id}, {"_id": 0})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Document not found")
+    return doc
+
+
+@api_router.delete("/documents/{doc_id}", dependencies=[Depends(admin_auth)])
+async def delete_document(doc_id: str):
+    res = await db.booking_documents.delete_one({"id": doc_id})
+    if res.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Document not found")
+    return {"ok": True}
 
 
 @api_router.post("/contact", response_model=ContactMessage)
