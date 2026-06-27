@@ -3,9 +3,10 @@ import { ArrowRight, Award, Users, Calendar, MapPin, HeartPulse } from "lucide-r
 import { BRAND } from "@/lib/api";
 
 const TIMELINE = [
-  { year: "2014", title: "The spark", body: "A small provider group was losing nearly $740K to aged AR and unresolved denials. A consultant came in with a 90-day engagement — and by day 92, the practice had their money back. The playbook was born." },
-  { year: "2016 – 2022", title: "Playbook refinement", body: "Years of operating inside US clinics — orthopedics, behavioral health, cardiology, FQHCs and more — sharpened the denial-intelligence layer, coding QA loops and payer-specific follow-up cadences." },
-  { year: "2024", title: "ZH Medsolutions is founded", body: "The team incorporates ZH Medsolutions to deliver, at scale, the disciplined RCM operating model they had refined for a decade. Day-one services span ERA, credentialing, coding, AR and denials." },
+  { year: "Early 2024", title: "The spark", body: "A small provider group was losing nearly $740K to aged AR and unresolved denials. A consultant came in with a 90-day engagement — and by day 92, the practice had their money back. The playbook was born." },
+  { year: "Mid 2024", title: "ZH Medsolutions is founded", body: "The team incorporates ZH Medsolutions to deliver, at scale, the disciplined RCM operating model refined across 15+ years of US billing operations. Day-one services span ERA, credentialing, coding, AR and denials." },
+  { year: "Late 2024", title: "First specialty expansion", body: "Service lines broaden into orthopedics, behavioral health, FQHCs and cardiology. Certified AAPC + AHIMA coders join the core team. Internal denial-intelligence layer goes live." },
+  { year: "2025", title: "Hospital systems", body: "First multi-state hospital network engagement. Extended Business Office team scales to support 240+ bed community hospitals alongside independent practices." },
   { year: "2026", title: "Today", body: "An end-to-end RCM partner across 20+ specialties, processing claims for independent practices and hospital systems coast to coast." },
 ];
 
@@ -88,10 +89,10 @@ export default function About() {
           </h2>
           <div className="space-y-5 text-slate-700 leading-[1.8] text-[16px] font-editorial">
             <p>
-              In 2014, a small provider group was losing nearly $740K to aged AR and unresolved denials. A consultant came in with a 90-day engagement. By the end of the engagement, the practice had their money back.
+              In 2024, a small provider group was losing nearly $740K to aged AR and unresolved denials. A consultant came in with a 90-day engagement. By the end of the engagement, the practice had their money back.
             </p>
             <p>
-              That consultant — and the playbook he refined over the next decade — became the foundation for ZH Medsolutions. The company was incorporated in 2024 to deliver, at scale, the same operating model that had quietly returned millions of dollars to US providers.
+              That consultant — backed by 15+ years of US revenue-cycle operating experience — incorporated ZH Medsolutions soon after, to deliver that same disciplined operating model at scale to providers across the country.
             </p>
             <p>
               Today, we look the same on the inside as that consultant did on day one: <span className="font-display font-semibold text-slate-900">a group of obsessive RCM operators backed by certified coders, AR specialists, credentialing veterans and a denial intelligence layer we&rsquo;ve refined across millions of claims.</span> The only thing that&rsquo;s changed is the scale — and the number of providers who can finally focus on patients instead of payers.
