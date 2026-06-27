@@ -5,9 +5,8 @@ import { BRAND } from "@/lib/api";
 const TIMELINE = [
   { year: "Early 2024", title: "The spark", body: "A small provider group was losing nearly $740K to aged AR and unresolved denials. A consultant came in with a 90-day engagement — and by day 92, the practice had their money back. The playbook was born." },
   { year: "Mid 2024", title: "ZH Medsolutions is founded", body: "The team incorporates ZH Medsolutions to deliver, at scale, the disciplined RCM operating model refined across 15+ years of US billing operations. Day-one services span ERA, credentialing, coding, AR and denials." },
-  { year: "Late 2024", title: "First specialty expansion", body: "Service lines broaden into orthopedics, behavioral health, FQHCs and cardiology. Certified AAPC + AHIMA coders join the core team. Internal denial-intelligence layer goes live." },
-  { year: "2025", title: "Hospital systems", body: "First multi-state hospital network engagement. Extended Business Office team scales to support 240+ bed community hospitals alongside independent practices." },
-  { year: "2026", title: "Today", body: "An end-to-end RCM partner across 20+ specialties, processing claims for independent practices and hospital systems coast to coast." },
+  { year: "2025", title: "Business expansion", body: "Service lines broaden across more specialties, hospital systems and Extended Business Office (EBO) engagements. Certified AAPC + AHIMA coders join the core team and the internal denial-intelligence layer goes live." },
+  { year: "2026", title: "Today", body: "An end-to-end RCM partner processing claims for independent practices and hospital systems coast to coast." },
 ];
 
 const LEADERS = [
