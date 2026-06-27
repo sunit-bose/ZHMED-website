@@ -3,18 +3,17 @@ import { ArrowRight, Award, Users, Calendar, MapPin, HeartPulse } from "lucide-r
 import { BRAND } from "@/lib/api";
 
 const TIMELINE = [
-  { year: "2014", title: "Spark", body: "Founders begin AR follow-up work for a small Florida cardiology group — recovering $740K in 90 days. The model becomes the playbook." },
-  { year: "2017", title: "Specialty expansion", body: "Service lines expand into orthopedics, FQHCs and behavioral health. Coders certify across AAPC and AHIMA tracks." },
-  { year: "2020", title: "Pandemic surge", body: "Onboarded 22 new practices in a single quarter as telehealth billing complexity exploded. Internal denial intelligence layer is built." },
-  { year: "2023", title: "Hospital systems", body: "First multi-state hospital network engagement. Extended Business Office (EBO) team scales to 60+ specialists." },
-  { year: "2026", title: "Today", body: "End-to-end RCM partner across 20+ specialties, processing claims for clinics and hospital systems coast to coast." },
+  { year: "2014", title: "The spark", body: "A small provider group was losing nearly $740K to aged AR and unresolved denials. A consultant came in with a 90-day engagement — and by day 92, the practice had their money back. The playbook was born." },
+  { year: "2016 – 2022", title: "Playbook refinement", body: "Years of operating inside US clinics — orthopedics, behavioral health, cardiology, FQHCs and more — sharpened the denial-intelligence layer, coding QA loops and payer-specific follow-up cadences." },
+  { year: "2024", title: "ZH Medsolutions is founded", body: "The team incorporates ZH Medsolutions to deliver, at scale, the disciplined RCM operating model they had refined for a decade. Day-one services span ERA, credentialing, coding, AR and denials." },
+  { year: "2026", title: "Today", body: "An end-to-end RCM partner across 20+ specialties, processing claims for independent practices and hospital systems coast to coast." },
 ];
 
 const LEADERS = [
   {
-    name: "Zahin Hossain",
+    name: "Somesh Bose",
     role: "Founder & CEO",
-    bio: "14+ years across denial management, payer relations and RCM operations. Previously led AR for a multi-state cardiology network. AAPC-certified. Lives in Tampa, FL.",
+    bio: "15+ years across denial management, payer relations and RCM operations. Spent a decade running AR and credentialing for US clinics before founding ZH Medsolutions in 2024.",
   },
   {
     name: "Head of Operations",
@@ -66,7 +65,7 @@ export default function About() {
             Founded by people who actually <span className="text-[#2E5A6E]">worked the queues.</span>
           </h1>
           <p className="mt-5 text-slate-600 text-lg leading-relaxed max-w-2xl mx-auto">
-            ZH Medsolutions started in 2014 when two US-billing veterans stopped working denials for someone else and started building a partner they wished they had been hired by.
+            ZH Medsolutions was founded in 2024 by US-billing veterans with 15+ years of revenue-cycle operating experience — to deliver, at scale, the disciplined RCM playbook they had refined for a decade.
           </p>
         </div>
       </section>
@@ -74,8 +73,8 @@ export default function About() {
       {/* Stats */}
       <section className="py-8 border-b border-slate-200/70">
         <div className="max-w-5xl mx-auto px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
-          <Stat value="11+" label="Years in US RCM" />
-          <Stat value="150+" label="Provider organizations" />
+          <Stat value="15+" label="Years team experience in US RCM" />
+          <Stat value="2024" label="Year ZH was founded" />
           <Stat value="20+" label="Specialties served" />
           <Stat value="$18.4M+" label="Recovered for clients in 2024" />
         </div>
@@ -89,13 +88,13 @@ export default function About() {
           </h2>
           <div className="space-y-5 text-slate-700 leading-[1.8] text-[16px] font-editorial">
             <p>
-              In 2014, a small Florida cardiology group was losing nearly $740K to aged AR and unresolved denials. Their internal billing team — two great people overwhelmed by 90+ buckets — couldn&rsquo;t catch up. A consultant came in for a 90-day engagement. By day 92, the cardiologists had their money back.
+              In 2014, a small provider group was losing nearly $740K to aged AR and unresolved denials. A consultant came in with a 90-day engagement. By the end of the engagement, the practice had their money back.
             </p>
             <p>
-              That consultant became our founder. ZH Medsolutions was incorporated soon after — built on a simple belief: <span className="font-display font-semibold text-slate-900">most US practices don&rsquo;t need fancier software. They need disciplined humans who care, equipped with the right playbooks.</span>
+              That consultant — and the playbook he refined over the next decade — became the foundation for ZH Medsolutions. The company was incorporated in 2024 to deliver, at scale, the same operating model that had quietly returned millions of dollars to US providers.
             </p>
             <p>
-              Twelve years on, we look the same on the inside as we did then: a small group of obsessive RCM operators backed by certified coders, AR specialists, credentialing veterans and a denial intelligence layer we&rsquo;ve refined across millions of claims. The only thing that&rsquo;s changed is the scale — and the number of providers who can finally focus on patients instead of payers.
+              Today, we look the same on the inside as that consultant did on day one: <span className="font-display font-semibold text-slate-900">a group of obsessive RCM operators backed by certified coders, AR specialists, credentialing veterans and a denial intelligence layer we&rsquo;ve refined across millions of claims.</span> The only thing that&rsquo;s changed is the scale — and the number of providers who can finally focus on patients instead of payers.
             </p>
           </div>
         </div>
@@ -109,7 +108,7 @@ export default function About() {
             Milestones
           </div>
           <h2 className="font-display text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900 mb-8">
-            A decade of compounded discipline.
+            From a 90-day engagement to a national RCM partner.
           </h2>
           <ol className="relative border-l-2 border-[#2E5A6E]/20 ml-2 space-y-7">
             {TIMELINE.map((t) => (
