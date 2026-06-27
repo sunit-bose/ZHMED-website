@@ -30,7 +30,7 @@ export function adminHeaders() {
 
 export const BRAND = {
   name: "ZH Medsolutions",
-  motto: "You Care For Your Patients. We Care For You.",
+  motto: "You care for your patients. We care for your revenue.",
   tagline: "End-to-end medical billing for US healthcare providers.",
   email: "info@zhmedsolutions.com",
   phone: "+1 (850) 776-3864",

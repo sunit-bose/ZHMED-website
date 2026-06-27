@@ -56,7 +56,7 @@ export default function About() {
 
             <blockquote className="mt-10 border-l-4 border-[#2E5A6E] pl-5 py-1">
               <p className="font-editorial italic text-xl text-slate-700">
-                &ldquo;You care for your patients. We care for you.&rdquo;
+                &ldquo;You care for your patients. We care for your revenue.&rdquo;
               </p>
               <div className="mt-2 text-xs tracking-widest uppercase text-[#2E5A6E] font-bold">
                 — Our promise
