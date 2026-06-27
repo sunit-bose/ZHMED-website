@@ -9,7 +9,7 @@ import { HOME } from "@/constants/testIds";
 const links = [
   { to: "/", label: "Home", tid: HOME.navHome },
   { to: "/#services", label: "Services", tid: HOME.navServices },
-  { to: "/#about", label: "About Us", tid: HOME.navAbout },
+  { to: "/about", label: "About Us", tid: HOME.navAbout },
   { to: "/#faq", label: "FAQ", tid: "nav-link-faq" },
   { to: "/resources", label: "Resources", tid: HOME.navResources },
   { to: "/#contact", label: "Contact", tid: HOME.navContact },

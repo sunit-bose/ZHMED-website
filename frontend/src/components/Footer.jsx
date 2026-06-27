@@ -7,9 +7,8 @@ import { toast } from "sonner";
 import { api, BRAND } from "@/lib/api";
 
 const COMPANY_LINKS = [
-  { label: "About Us", href: "/#about" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Insights", href: "/resources" },
+  { label: "About Us", href: "/about" },
+  { label: "Resources", href: "/resources" },
   { label: "Contact Us", href: "/#contact" },
 ];
 
@@ -61,12 +60,12 @@ export default function Footer() {
                   ZH Medsolutions
                 </div>
                 <div className="text-[10px] tracking-[0.22em] uppercase text-[#A8C5D6]">
-                  Care · Coding · Cashflow
+                  Care · Coding · Cash Flow
                 </div>
               </div>
             </div>
             <p className="text-sm leading-relaxed text-slate-300/85">
-              End-to-end medical billing partner for US healthcare providers and hospitals — quietly powering healthier revenue cycles.
+              End-to-end medical billing partner for US healthcare providers and hospitals — consistently delivering healthier revenue cycles.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex items-start gap-3">

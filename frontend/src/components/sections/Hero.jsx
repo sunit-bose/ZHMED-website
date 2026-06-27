@@ -68,7 +68,7 @@ export default function Hero() {
                     <Activity className="h-5 w-5" />
                     <span className="font-display font-semibold">RCM Snapshot</span>
                   </div>
-                  <span className="text-[11px] tracking-widest uppercase text-emerald-600 font-bold bg-emerald-50 px-2 py-1 rounded">live</span>
+                  <span className="text-[11px] tracking-widest uppercase text-[#2E5A6E] font-bold bg-[#E8F0F4] px-2 py-1 rounded">Benchmark</span>
                 </div>
                 <Row label="Avg Days in AR" value="30-35 days" tone="green" />
                 <Row label="Denial Rate" value="5-10%" tone="green" />

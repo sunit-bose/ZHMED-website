@@ -29,7 +29,7 @@ export default function Services() {
             Our Capabilities
           </div>
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
-            Fourteen revenue-cycle disciplines.
+            Fourteen revenue-cycle services.
             <br />
             <span className="text-slate-500">One quiet, accountable partner.</span>
           </h2>

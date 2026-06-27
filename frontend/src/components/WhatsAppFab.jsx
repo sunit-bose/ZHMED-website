@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const WHATSAPP_NUMBER = "918826425482"; // +91-882-642-5482 in wa.me format
+const WHATSAPP_NUMBER = "18507763864"; // +1 (850) 776-3864 in wa.me format
 const PREFILL =
   "Hi ZH Medsolutions, I'd like to learn more about your medical billing services.";
 

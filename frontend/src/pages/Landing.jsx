@@ -5,10 +5,12 @@ import Services from "@/components/sections/Services";
 import Specialties from "@/components/sections/Specialties";
 import PainPoints from "@/components/sections/PainPoints";
 import ForWhom from "@/components/sections/ForWhom";
+import Integrations from "@/components/sections/Integrations";
 import Process from "@/components/sections/Process";
 import BrandBand from "@/components/sections/BrandBand";
 import About from "@/components/sections/About";
 import TrustBar from "@/components/sections/TrustBar";
+import CasesPreview from "@/components/sections/CasesPreview";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 
@@ -31,10 +33,12 @@ export default function Landing() {
       <Services />
       <Specialties />
       <ForWhom />
+      <Integrations />
       <Process />
       <BrandBand />
       <About />
       <TrustBar />
+      <CasesPreview />
       <FAQ />
       <Contact />
     </div>

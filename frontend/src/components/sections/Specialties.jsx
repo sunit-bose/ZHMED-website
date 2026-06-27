@@ -3,6 +3,16 @@ import {
   HeartPulse, Bone, Scissors, FlaskConical, Brain, Stethoscope, ArrowRight,
 } from "lucide-react";
 
+const SPECIALTY_SLUGS = {
+  "Internal Medicine": "internal-medicine",
+  "Cardiology": "cardiology",
+  "FQHC": "fqhc",
+  "OBGYN": "obgyn",
+  "Orthopedics": "orthopedics",
+  "Behavioral Health": "behavioral-health",
+  "Physical Therapy": "physical-therapy",
+};
+
 const GROUPS = [
   {
     icon: HeartPulse,
@@ -61,7 +71,7 @@ export default function Specialties() {
                   4
                 </span>
                 <span className="text-[11px] tracking-wider uppercase text-slate-500 mt-1">
-                  Care families
+                  Specialty Categories
                 </span>
               </div>
             </div>
@@ -80,7 +90,7 @@ export default function Specialties() {
             </button>
           </div>
 
-          {/* Right: categorised cards */}
+          {/* Right: categorized cards */}
           <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4">
             {GROUPS.map((g) => (
               <div
@@ -96,15 +106,25 @@ export default function Specialties() {
                   {g.label}
                 </h3>
                 <ul className="grid grid-cols-1 gap-1.5">
-                  {g.items.map((s) => (
-                    <li
-                      key={s}
-                      className="text-[13px] text-slate-700 flex items-center gap-2"
-                    >
-                      <span className="h-1 w-1 rounded-full bg-[#2E5A6E]/50" />
-                      {s}
-                    </li>
-                  ))}
+                  {g.items.map((s) => {
+                    const slug = SPECIALTY_SLUGS[s];
+                    return (
+                      <li key={s} className="text-[13px] flex items-center gap-2">
+                        <span className="h-1 w-1 rounded-full bg-[#2E5A6E]/50 flex-shrink-0" />
+                        {slug ? (
+                          <button
+                            onClick={() => navigate(`/billing-for/${slug}`)}
+                            className="text-slate-700 hover:text-[#2E5A6E] hover:underline font-medium text-left"
+                            data-testid={`specialty-link-${slug}`}
+                          >
+                            {s}
+                          </button>
+                        ) : (
+                          <span className="text-slate-700">{s}</span>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}

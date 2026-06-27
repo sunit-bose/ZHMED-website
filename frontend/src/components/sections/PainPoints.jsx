@@ -4,12 +4,12 @@ const PAINS = [
   {
     icon: TrendingDown,
     title: "Denial rates climbing every quarter",
-    detail: "Repeat denials hide root causes. We tag every CARC/RARC and feed fixes back to your front desk and coders.",
+    detail: "Repeat denials from UnitedHealthcare, Aetna, Cigna, Humana and Medicare follow patterns. We tag every CARC/RARC by payer and feed root-cause fixes back to your billing team.",
   },
   {
     icon: Clock,
-    title: "AR over 90 days choking cashflow",
-    detail: "Old AR collection rates drop below 15%. Our payer-specific cadences typically rescue 30-40% of aged AR in the first 90 days.",
+    title: "AR over 90 days choking cash flow",
+    detail: "Old AR collection rates drop below 15%. Our payer-specific follow-up workflows (UHC, Aetna, Medicaid MCOs and others) typically recover 30-40% of aged AR within the first 90 days.",
   },
   {
     icon: FileWarning,

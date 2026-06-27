@@ -14,7 +14,7 @@ const FAQS = [
   },
   {
     q: "Do you work with my existing PM / EHR system?",
-    a: "Yes — we're PM/EHR agnostic. We work directly in your existing systems (Athena, eClinicalWorks, Epic, NextGen, Kareo, AdvancedMD, Practice Fusion, and 30+ others). No migrations, no re-platforming.",
+    a: "Yes — we work directly in your existing systems including Epic, athenahealth, eClinicalWorks, Kareo/Tebra, Greenway, NextGen, Practice Fusion, AdvancedMD, DrChrono, Allscripts and 30+ others. No migrations, no re-platforming.",
   },
   {
     q: "How do you handle HIPAA and patient data security?",

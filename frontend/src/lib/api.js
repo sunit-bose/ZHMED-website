@@ -33,7 +33,7 @@ export const BRAND = {
   motto: "You Care For Your Patients. We Care For You.",
   tagline: "End-to-end medical billing for US healthcare providers.",
   email: "info@zhmedsolutions.com",
-  phone: "+91-882-642-5482",
+  phone: "+1 (850) 776-3864",
   address: "Available by appointment",
   website: "www.zhmedsolutions.com",
   logo: "https://customer-assets.emergentagent.com/job_provider-billing-hub/artifacts/6f0rr4pd_IMG_2401.PNG",

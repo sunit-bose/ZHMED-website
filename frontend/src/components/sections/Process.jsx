@@ -4,7 +4,7 @@ const steps = [
   { icon: ScanSearch, title: "Discovery", desc: "We audit your current denials, AR aging, payer mix and PM/EHR setup — no obligation." },
   { icon: Headphones, title: "Onboarding", desc: "Secure data exchange, dedicated account manager, KPIs and SLAs locked in writing." },
   { icon: FileSearch, title: "Daily Operations", desc: "Coding, charge entry, posting, AR & denial work loops with daily quality reviews." },
-  { icon: Rocket, title: "Optimisation", desc: "Root-cause analytics feed back to your front desk and coders — denials shrink quarter over quarter." },
+  { icon: Rocket, title: "Optimization", desc: "Root-cause analytics feed back to your billing team and coders — denials shrink quarter over quarter." },
 ];
 
 export default function Process() {

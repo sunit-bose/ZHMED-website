@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 const points = [
   "100% US-healthcare focused team",
   "HIPAA-aligned secure data handling",
-  "PM / EHR agnostic — we work in your system",
+  "Works in Epic, athenahealth, eClinicalWorks, Kareo/Tebra, NextGen, Greenway, Practice Fusion + 30 more",
   "Daily, weekly and monthly KPI dashboards",
   "Certified medical coders (AAPC / AHIMA)",
   "Transparent, outcome-based pricing",
